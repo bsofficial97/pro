@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nissan Admin Dashboard</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #f8f9fa;
+    }
+
+    .navbar {
+      background-color: #c30000;
+    }
+
+    .navbar-brand {
+      color: #fff;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    .summary-card {
+      border-radius: 1rem;
+      padding: 1.5rem;
+      color: #fff;
+      text-align: center;
+    }
+
+    .summary-card h3 {
+      font-weight: 700;
+    }
+
+    .summary-card.employees {
+      background-color: #c30000;
+    }
+
+    .summary-card.projects {
+      background-color: #ff4d4d;
+    }
+
+    .summary-card.pending {
+      background-color: #ff8080;
+    }
+
+    .summary-card.completed {
+      background-color: #ff9999;
+    }
+
+    .employee-card {
+      border-radius: 1rem;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      padding: 1rem;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+
+    .employee-card img {
+      border-radius: 50%;
+    }
+
+    canvas {
+      height: 300px !important;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Nissan Admin</a>
+      <div class="d-flex ms-auto align-items-center gap-3">
+        <span class="text-white fw-bold">Welcome, Ashish Sen</span>
+        <button class="btn btn-light btn-sm" onclick="window.location.href='index.html'">Logout</button>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container my-4">
+
+    <!-- Summary Cards -->
+    <div class="row mb-4">
+      <div class="col-md-3 mb-3">
+        <div class="summary-card employees">
+          <h3>50</h3>
+          <p>Employees</p>
+        </div>
+      </div>
+      <div class="col-md-3 mb-3">
+        <div class="summary-card projects">
+          <h3>120</h3>
+          <p>Projects Assigned</p>
+        </div>
+      </div>
+      <div class="col-md-3 mb-3">
+        <div class="summary-card pending">
+          <h3>8</h3>
+          <p>Pending Tasks</p>
+        </div>
+      </div>
+      <div class="col-md-3 mb-3">
+        <div class="summary-card completed">
+          <h3>112</h3>
+          <p>Completed Tasks</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Employee Cards -->
+    <div class="row mb-4">
+      <div class="col-md-3">
+        <div class="employee-card">
+          <img src="https://i.postimg.cc/265M597C/nissan-PNG93.png" width="80">
+          <h5 class="mt-2">Ashish Sen</h5>
+          <p class="text-muted">Business analyst</p>
+          <small>Tasks Completed: 15</small><br>
+          <small>Cars Assigned: 3</small>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="employee-card">
+          <img src="https://i.postimg.cc/265M597C/nissan-PNG93.png" width="80">
+          <h5 class="mt-2">Shekhawat</h5>
+          <p class="text-muted">Sales</p>
+          <small>Tasks Completed: 12</small><br>
+          <small>Cars Assigned: 2</small>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="employee-card">
+          <img src="https://i.postimg.cc/265M597C/nissan-PNG93.png" width="80">
+          <h5 class="mt-2">Mike Ross</h5>
+          <p class="text-muted">HR</p>
+          <small>Tasks Completed: 8</small><br>
+          <small>Cars Assigned: 1</small>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="employee-card">
+          <img src="https://i.postimg.cc/265M597C/nissan-PNG93.png" width="80">
+          <h5 class="mt-2">Bhawani Shankar</h5>
+          <p class="text-muted">IT</p>
+          <small>Tasks Completed: 10</small><br>
+          <small>Cars Assigned: 2</small>
+        </div>
+      </div>
+    </div>
+
+    <!-- Charts -->
+    <div class="row mb-4">
+      <div class="col-md-6 mb-3">
+        <div class="card p-3">
+          <h5>Task Status</h5>
+          <canvas id="taskChart"></canvas>
+        </div>
+      </div>
+      <div class="col-md-6 mb-3">
+        <div class="card p-3">
+          <h5>Monthly Car Projects</h5>
+          <canvas id="projectChart"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <!-- Employee Tasks Table -->
+    <div class="row">
+      <div class="col-12">
+        <table id="employeeTable" class="table table-striped table-bordered">
+          <thead>
+            <tr>
+              <th>Task ID</th>
+              <th>Project</th>
+              <th>Description</th>
+              <th>Status</th>
+              <th>Deadline</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>101</td>
+              <td>Nissan Car X</td>
+              <td>Design 3D Dashboard</td>
+              <td>Completed</td>
+              <td>2025-09-20</td>
+            </tr>
+            <tr>
+              <td>102</td>
+              <td>Nissan Car X</td>
+              <td>Integrate Engine Parameters</td>
+              <td>In Progress</td>
+              <td>2025-09-25</td>
+            </tr>
+            <tr>
+              <td>103</td>
+              <td>Nissan Car X</td>
+              <td>Test Fuel Efficiency</td>
+              <td>Pending</td>
+              <td>2025-09-30</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    // DataTable with export buttons
+    $(document).ready(function () {
+      $('#employeeTable').DataTable({
+        dom: 'Bfrtip',
+        buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
+      });
+    });
+
+    // Task Status Chart
+    const taskCtx = document.getElementById('taskChart').getContext('2d');
+    new Chart(taskCtx, {
+      type: 'doughnut',
+      data: {
+        labels: ['Completed', 'In Progress', 'Pending'],
+        datasets: [{
+          data: [15, 5, 3],
+          backgroundColor: ['#c30000', '#ff4d4d', '#ff8080']
+        }]
+      },
+      options: { responsive: true, maintainAspectRatio: false }
+    });
+
+    // Monthly Car Projects Chart
+    const projectCtx = document.getElementById('projectChart').getContext('2d');
+    new Chart(projectCtx, {
+      type: 'bar',
+      data: {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+        datasets: [{
+          label: 'Projects',
+          data: [2, 3, 4, 2, 1, 0],
+          backgroundColor: '#ff4d4d'
+        }]
+      },
+      options: { responsive: true, maintainAspectRatio: false, scales: { y: { beginAtZero: true } } }
+    });
+  </script>
+
+</body>
+
+</html>

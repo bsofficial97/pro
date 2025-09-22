@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nissan Motors | Login</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: url("https://i.postimg.cc/j5xFC3KM/1-Nissan-MC-VLP-Desktop-2880-x-2048-21-Nov-jpg-ximg-l-12-m-smart.jpg") no-repeat center center/cover;
+            position: relative;
+            overflow: hidden;
+        }
+
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: -1;
+        }
+
+        .card {
+            border: none;
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+        }
+
+        .brand-side {
+            background: #fff;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .brand-side h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #c30000;
+        }
+
+        .brand-side p {
+            font-size: 1rem;
+            margin-top: .5rem;
+            color: #333;
+        }
+
+        .brand-side img {
+            margin-top: 1rem;
+            max-width: 100%;
+            height: auto;
+        }
+
+        .form-side {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 2rem;
+        }
+
+        .btn-login {
+            background: #c30000;
+            color: #fff;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .btn-login:hover {
+            background: #a00000;
+        }
+
+        .form-text a {
+            text-decoration: none;
+            color: #c30000;
+            font-weight: 500;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container_flude">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 col-md-10">
+                <div class="card">
+                    <div class="row g-0">
+                        <div class="col-md-6 brand-side d-flex flex-column justify-content-center text-center">
+                            <h1 class="car-logo">NISSAN MOTORS</h1>
+                            <p>Drive the future with innovation, power, and performance.</p>
+                            <img src="https://i.postimg.cc/265M597C/nissan-PNG93.png" alt="Nissan Car"
+                                class="car-image">
+                        </div>
+
+                        <style>
+                            .car-logo {
+                                font-size: 48px;
+                                font-weight: 900;
+                                color: #c30000;
+                                letter-spacing: 2px;
+                                position: relative;
+                                display: inline-block;
+                                animation: carSlide 2s ease-in-out infinite, speedBlur 2s linear infinite;
+                            }
+
+                            /* Subtle horizontal sliding */
+                            @keyframes carSlide {
+
+                                0%,
+                                100% {
+                                    transform: translateX(0);
+                                }
+
+                                50% {
+                                    transform: translateX(6px);
+                                }
+                            }
+
+                            /* Very subtle blur / shadow for motion feel */
+                            @keyframes speedBlur {
+
+                                0%,
+                                100% {
+                                    text-shadow: 1px 0 1px #ff8080, -1px 0 1px #ff4d4d;
+                                }
+
+                                50% {
+                                    text-shadow: 3px 0 2px #ff8080, -3px 0 2px #ff4d4d;
+                                }
+                            }
+
+                            /* Car image slight float */
+                            .car-image {
+                                width: 100%;
+                                max-width: 400px;
+                                margin-top: 20px;
+                                transition: transform 0.5s ease-in-out;
+                            }
+
+                            .car-image:hover {
+                                transform: translateY(-6px) rotate(-1.5deg);
+                            }
+                        </style>
+
+
+                        <!-- Right form -->
+                        <div class="col-md-6 form-side justify-content-center">
+                            <!-- Top logos joint effect -->
+                            <div class="d-flex justify-content-center align-items-center mb-4 position-relative"
+                                style="gap: -30px;">
+                                <img src="https://i.postimg.cc/gkqFxX6J/nissan-logo-car-renault-emblem-png-favpng-Za-Hvp-Gxrss-S7ysx5pau8-AWr-U1-removebg-preview.png"
+                                    alt="Nissan Logo"
+                                    style="height:100px; width:auto; z-index:2; transition: transform 0.3s;">
+                                <img src="https://i.postimg.cc/yx4tds1c/cf85b5439da2e0e867ac183bcd214fe6-removebg-preview.png"
+                                    alt="Car Logo"
+                                    style="height:100px; width:auto; z-index:1; transition: transform 0.3s;">
+                            </div>
+
+                            <script>
+                                const logos = document.querySelectorAll('.d-flex img');
+                                logos.forEach(img => {
+                                    img.addEventListener('mouseenter', () => {
+                                        img.style.transform = "scale(1.1) translateY(-5px)";
+                                    });
+                                    img.addEventListener('mouseleave', () => {
+                                        img.style.transform = "scale(1) translateY(0)";
+                                    });
+                                });
+                            </script>
+
+                            <!-- Login form -->
+                            <form>
+                                <div class="mb-3">
+                                    <input type="text" class="form-control" placeholder="Email or Phone Number"
+                                        required>
+                                </div>
+                                <div class="mb-3">
+                                    <input type="password" class="form-control" placeholder="Password" required>
+                                </div>
+                                <button type="button" class="btn btn-login w-100 mb-3"
+                                    onclick="window.location.href='admin.html'">Log In</button>
+                                <div class="form-text text-center">
+                                    <a href="#">Forgot Password ?</a>
+                                </div>
+                                <hr>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
